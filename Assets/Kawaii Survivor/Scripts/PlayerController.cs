@@ -4,7 +4,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
 {
+    [Header("Elements")]
     [SerializeField] private MobileJoystick playerJoystick;
+    [Header("Settings")]
     [SerializeField] private float moveSpeed;
     private Rigidbody2D rig;
 
@@ -15,7 +17,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
        rig.velocity =  playerJoystick.GetMoveVector() * moveSpeed * Time.deltaTime;
     }
