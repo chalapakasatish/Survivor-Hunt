@@ -1,0 +1,11 @@
+# ninja log v5
+35	220	7385235081622443	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	d3f8ffbe82935037
+222	493	7385235083729456	E:/GitHub/Survivor-Hunt/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/14b5r6x2/obj/armeabi-v7a/libswappywrapper.so	bd87af6854183189
+24	1083	7385235090203301	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	ed08cee70dcb603a
+11	1109	7385235090453523	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	fd7a625d1c08ac50
+15	1151	7385235090889803	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	bfb512761cbb95f9
+29	1253	7385235091921128	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	798b4f3b376701f6
+7	1307	7385235092451726	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	43510fc642c91b7f
+19	1514	7385235094523432	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	62849e119a446fe3
+2	1592	7385235095261475	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	19b3f8e28c2057da
+1592	1798	7385235096821013	E:/GitHub/Survivor-Hunt/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/RelWithDebInfo/14b5r6x2/obj/armeabi-v7a/libgame.so	d424c13b657f024a
