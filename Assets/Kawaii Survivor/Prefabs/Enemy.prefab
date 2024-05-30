@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8549953035843447904}
   - component: {fileID: 6658589184593722685}
   - component: {fileID: 7376298294362278704}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Spawn Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,7 +111,7 @@ GameObject:
   - component: {fileID: 7297762372994789190}
   - component: {fileID: 5224176233842355245}
   - component: {fileID: 4990803888868608128}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy Renderer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -211,7 +211,7 @@ GameObject:
   - component: {fileID: 3034476436122582853}
   - component: {fileID: 8321801534402384971}
   - component: {fileID: 5947164479238968470}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pass Away Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5101,7 +5101,8 @@ GameObject:
   - component: {fileID: 4994897892539644265}
   - component: {fileID: 8687975452004750213}
   - component: {fileID: 4942827889227791693}
-  m_Layer: 0
+  - component: {fileID: 4607388784703767738}
+  m_Layer: 6
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5160,3 +5161,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 1
+--- !u!58 &4607388784703767738
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8667696796274530849}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.3932253}
+  m_Radius: 0.39129126
