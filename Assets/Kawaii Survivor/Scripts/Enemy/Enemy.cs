@@ -42,7 +42,6 @@ public class Enemy : MonoBehaviour
         StartSpawnSequence();
 
         attackDelay = 1f / attackFrequency;
-        Debug.Log("Attack Delay" + attackDelay);
     }
     void StartSpawnSequence()
     {
@@ -88,6 +87,7 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("Dealing" + damage + "damage to player");
         attackTimer = 0;
+        player.TakeDamage(damage);
     }
     private void Wait()
     {
