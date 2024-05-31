@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    enum State
+    {
+        Idle,
+        Attack
+    }
+    State state;
     [Header("Elements")]
     [SerializeField] private Transform hitDetectionTransform;
     [SerializeField] private float hitDetectionRadius;
@@ -13,10 +19,47 @@ public class Weapon : MonoBehaviour
     [SerializeField] private LayerMask enemyMask;
     [SerializeField] private float aimLerp;
 
+    [Header("Attack")]
+    [SerializeField] private int damage;
+    [SerializeField] Animator animator;
+    [SerializeField]private List<Enemy> damagedEnemies = new List<Enemy>();
+    [SerializeField] private float attackDelay;
+    [SerializeField] private float attackTimer;
+    private void Start()
+    {
+        state = State.Idle;
+    }
+
     void Update()
     {
-        AutoAim();
+        switch (state)
+        {
+            case State.Idle:
+                AutoAim();
+                break;
+            case State.Attack:
+                Attacking();
+                break;
+            default:
+                break;
+        }
+    }
+    void Attacking()
+    {
         Attack();
+    }
+    [NaughtyAttributes.Button]
+    void StartAttack()
+    {
+        animator.Play("Attack");
+        state = State.Attack;
+        damagedEnemies.Clear();
+        animator.speed = 1f / attackDelay;
+    }
+    void StopAttack()
+    {
+        state = State.Idle;
+        damagedEnemies.Clear();
     }
     private void AutoAim()
     {
@@ -24,9 +67,26 @@ public class Weapon : MonoBehaviour
         Vector2 targetUpVector = Vector3.up;
 
         if (closestEnemy != null)
+        {
+            ManageAttack();
             targetUpVector = (closestEnemy.transform.position - transform.position).normalized;
+        }
 
         transform.up = Vector3.Lerp(transform.up, targetUpVector, Time.deltaTime * aimLerp);
+
+        IncrementAttackTimer();
+    }
+    void ManageAttack()
+    {
+        if(attackTimer > attackDelay) 
+        {
+            attackTimer = 0;
+            StartAttack();
+        }
+    }
+    void IncrementAttackTimer()
+    {
+        attackTimer += Time.deltaTime;
     }
     private Enemy GetClosestEnemy()
     {
@@ -35,8 +95,7 @@ public class Weapon : MonoBehaviour
 
         if (enemies.Length <= 0)
         {
-            transform.up = Vector3.up;
-            return null; ;
+            return null; 
         }
         float minDistance = range;
 
@@ -46,7 +105,7 @@ public class Weapon : MonoBehaviour
 
             float distanceToEnemy = Vector2.Distance(transform.position, enemyChecked.transform.position);
 
-            if ((distanceToEnemy < minDistance))
+            if (distanceToEnemy < minDistance)
             {
                 closestEnemy = enemyChecked;
                 minDistance = distanceToEnemy;
@@ -57,11 +116,16 @@ public class Weapon : MonoBehaviour
     }
     private void Attack()
     {
-        Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, range, enemyMask);
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(hitDetectionTransform.position, hitDetectionRadius, enemyMask);
 
         for (int i = 0; i < enemies.Length; i++)
         {
-            Destroy(enemies[i].gameObject);
+            Enemy enemy = enemies[i].GetComponent<Enemy>();
+            if ((!damagedEnemies.Contains(enemy)))
+            {
+                enemy.TakeDamage(damage);
+                damagedEnemies.Add(enemy);
+            }
         }
     }
     private void OnDrawGizmosSelected()
