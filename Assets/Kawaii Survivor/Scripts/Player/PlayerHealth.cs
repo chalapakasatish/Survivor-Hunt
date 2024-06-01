@@ -22,18 +22,11 @@ public class PlayerHealth : MonoBehaviour
         UpdateUI();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void TakeDamage(int damage)
     {
         int realDamage = Mathf.Min(damage, health);
         health -= realDamage;
         UpdateUI();
-
-
 
         if (health <= 0)
         {

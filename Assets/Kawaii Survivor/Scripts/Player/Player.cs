@@ -7,20 +7,18 @@ public class Player : MonoBehaviour
 {
     [Header("Components")]
     private PlayerHealth playerHealth;
+    [SerializeField] private CircleCollider2D collider;
 
-    // Start is called before the first frame update
     void Start()
     {
         playerHealth = GetComponent<PlayerHealth>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void TakeDamage(int damage)
     {
         playerHealth.TakeDamage(damage);
+    }
+    public Vector2 GetCenter()
+    {
+        return (Vector2)transform.position + collider.offset;
     }
 }

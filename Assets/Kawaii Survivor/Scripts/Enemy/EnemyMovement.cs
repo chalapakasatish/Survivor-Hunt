@@ -13,14 +13,14 @@ public class EnemyMovement : MonoBehaviour
 
     void Update()
     {
-        if(player != null)
-        FollowPlayer();
+        //if(player != null)
+        //FollowPlayer();
     }
     public void StorePlayer(Player player)
     {
         this.player = player;
     }
-    private void FollowPlayer()
+    public void FollowPlayer()
     {
         Vector2 direction = (player.transform.position - transform.position).normalized;
 

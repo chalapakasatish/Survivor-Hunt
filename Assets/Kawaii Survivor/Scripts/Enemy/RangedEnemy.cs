@@ -4,8 +4,8 @@ using UnityEngine;
 using TMPro;
 using System;
 
-[RequireComponent(typeof(EnemyMovement))]
-public class Enemy : MonoBehaviour
+[RequireComponent(typeof(EnemyMovement),typeof(RangedEnemyAttack))]
+public class RangedEnemy : MonoBehaviour
 {
     [Header("Elements")]
     private Player player;
@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
 
     [Header("Component")]
     private EnemyMovement movement;
+    private RangedEnemyAttack attack;
+
 
     [Header("Spawn Sequence Related")]
     [SerializeField] private SpriteRenderer renderer;
@@ -28,10 +30,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private ParticleSystem passAwayParticles;
 
     [Header("Attack")]
-    [SerializeField] private int damage;
-    [SerializeField] private float attackFrequency;
-    [SerializeField] private float attackDelay;
-    [SerializeField] private float attackTimer;
     [SerializeField] private float playerDetectionRadius;
 
     [Header("Debug")]
@@ -47,7 +45,12 @@ public class Enemy : MonoBehaviour
         healthText.text = health.ToString();
 
         player = FindFirstObjectByType<Player>();
+
         movement = GetComponent<EnemyMovement>();
+        attack = GetComponent<RangedEnemyAttack>();
+
+        attack.StorePlayer(player);
+
         if (player == null)
         {
             Destroy(gameObject);
@@ -55,7 +58,6 @@ public class Enemy : MonoBehaviour
 
         StartSpawnSequence();
 
-        attackDelay = 1f / attackFrequency;
     }
     void StartSpawnSequence()
     {
@@ -81,35 +83,27 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!renderer.enabled)
+        if (!renderer.enabled)
         {
             return;
         }
-        if (attackTimer >= attackDelay)
-        {
-            TryAttack();
-        }
-        else
-        {
-            Wait();
-        }
-        movement.FollowPlayer();
+        ManageAttack();
+        
     }
-    private void TryAttack()
+    private void ManageAttack()
     {
         float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-        if (distanceToPlayer <= playerDetectionRadius)
-        {
-            Attack();
-            //PassAway();
-        }
+        if (distanceToPlayer > playerDetectionRadius)
+            movement.FollowPlayer();
+            else
+            TryAttack();
     }
-    private void Attack()
+    
+    private void TryAttack()
     {
-        Debug.Log("Dealing" + damage + "damage to player");
-        attackTimer = 0;
-        player.TakeDamage(damage);
+        attack.AutoAim();
     }
+    
     public void TakeDamage(int damage)
     {
         int realDamage = Mathf.Min(damage, health);
@@ -121,10 +115,6 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
             PassAway();
-    }
-    private void Wait()
-    {
-        attackTimer += Time.deltaTime;
     }
     private void PassAway()
     {
