@@ -1,62 +1,65 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
-using System;
 
-[RequireComponent(typeof(EnemyMovement))]
-public class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour
 {
-    [Header("Elements")]
-    private Player player;
+    [Header("Component")]
+    protected EnemyMovement movement;
 
     [Header("Health")]
-    [SerializeField] private int maxHealth;
-    private int health;
-    [SerializeField] private TextMeshPro healthText;
+    [SerializeField] protected int maxHealth;
+    protected int health;
 
-    [Header("Component")]
-    private EnemyMovement movement;
+    [Header("Elements")]
+    protected Player player;
 
     [Header("Spawn Sequence Related")]
-    [SerializeField] private SpriteRenderer renderer;
-    [SerializeField] private SpriteRenderer spawnIndicator;
-    private bool hasSpawned;
-    [SerializeField] private Collider2D collider;
+    [SerializeField] protected new SpriteRenderer renderer;
+    [SerializeField] protected SpriteRenderer spawnIndicator;
+    [SerializeField] protected new Collider2D collider;
+    protected bool hasSpawned;
+
 
     [Header("Effects")]
-    [SerializeField] private ParticleSystem passAwayParticles;
+    [SerializeField] protected ParticleSystem passAwayParticles;
 
     [Header("Attack")]
-    [SerializeField] private int damage;
-    [SerializeField] private float attackFrequency;
-    [SerializeField] private float attackDelay;
-    [SerializeField] private float attackTimer;
-    [SerializeField] private float playerDetectionRadius;
-
-    [Header("Debug")]
-    [SerializeField] private bool gizmos;
+    [SerializeField] protected float playerDetectionRadius;
 
     [Header("Actions")]
     public static Action<int, Vector2> onDamageTaken;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        health = maxHealth;
-        healthText.text = health.ToString();
+    [Header("Debug")]
+    [SerializeField] protected bool gizmos;
 
-        player = FindFirstObjectByType<Player>();
+    //private void Awake()
+    //{
+    //    SetRenderersVisibility(false);
+    //}
+    // Start is called before the first frame update
+    protected virtual void Start()
+    {
+        Debug.Log("Enemy");
+
+        health = maxHealth;
         movement = GetComponent<EnemyMovement>();
+        player = FindFirstObjectByType<Player>();
         if (player == null)
         {
             Destroy(gameObject);
         }
 
         StartSpawnSequence();
-
-        attackDelay = 1f / attackFrequency;
     }
+
+    // Update is called once per frame
+    protected bool CanAttack()
+    {
+        return renderer.enabled;
+    }
+
     void StartSpawnSequence()
     {
         SetRenderersVisibility(false);
@@ -78,53 +81,16 @@ public class Enemy : MonoBehaviour
         renderer.enabled = visibility;
         spawnIndicator.enabled = !visibility;
     }
-    // Update is called once per frame
-    void Update()
-    {
-        if(!renderer.enabled)
-        {
-            return;
-        }
-        if (attackTimer >= attackDelay)
-        {
-            TryAttack();
-        }
-        else
-        {
-            Wait();
-        }
-        movement.FollowPlayer();
-    }
-    private void TryAttack()
-    {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.transform.position);
-        if (distanceToPlayer <= playerDetectionRadius)
-        {
-            Attack();
-            //PassAway();
-        }
-    }
-    private void Attack()
-    {
-        Debug.Log("Dealing" + damage + "damage to player");
-        attackTimer = 0;
-        player.TakeDamage(damage);
-    }
     public void TakeDamage(int damage)
     {
         int realDamage = Mathf.Min(damage, health);
         health -= realDamage;
-        healthText.text = health.ToString();
 
 
         onDamageTaken?.Invoke(damage, transform.position);
 
         if (health <= 0)
             PassAway();
-    }
-    private void Wait()
-    {
-        attackTimer += Time.deltaTime;
     }
     private void PassAway()
     {

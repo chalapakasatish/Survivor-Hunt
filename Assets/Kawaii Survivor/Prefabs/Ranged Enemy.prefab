@@ -4999,9 +4999,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5177143524694057905}
+  - component: {fileID: 6619808278415766415}
   - component: {fileID: 1082872814222682175}
   - component: {fileID: 7323390372138293328}
-  - component: {fileID: 6619808278415766415}
   - component: {fileID: 1785809424406720564}
   m_Layer: 6
   m_Name: Ranged Enemy
@@ -5030,39 +5030,6 @@ Transform:
   - {fileID: 2134514241646339394}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1082872814222682175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5742743049317110938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b17d1a3b75710e3408bd6b511a9f9b23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 10
-  healthText: {fileID: 1589412074023983300}
-  renderer: {fileID: 1493908352951686549}
-  spawnIndicator: {fileID: 810002446758961222}
-  collider: {fileID: 6619808278415766415}
-  passAwayParticles: {fileID: 4012647920982286709}
-  playerDetectionRadius: 5
-  gizmos: 1
---- !u!114 &7323390372138293328
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5742743049317110938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 531a21612c8c305488ef58d0e595e638, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 1
 --- !u!58 &6619808278415766415
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -5099,6 +5066,39 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0.3932253}
   m_Radius: 0.39129126
+--- !u!114 &1082872814222682175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5742743049317110938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b17d1a3b75710e3408bd6b511a9f9b23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  healthText: {fileID: 1589412074023983300}
+  renderer: {fileID: 1493908352951686549}
+  spawnIndicator: {fileID: 810002446758961222}
+  collider: {fileID: 6619808278415766415}
+  passAwayParticles: {fileID: 4012647920982286709}
+  playerDetectionRadius: 5
+  gizmos: 1
+--- !u!114 &7323390372138293328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5742743049317110938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 531a21612c8c305488ef58d0e595e638, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
 --- !u!114 &1785809424406720564
 MonoBehaviour:
   m_ObjectHideFlags: 0

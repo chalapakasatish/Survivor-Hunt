@@ -18,14 +18,14 @@ public class Weapon : MonoBehaviour
     [Header("Settings")]
     [SerializeField] private float range;
     [SerializeField] private LayerMask enemyMask;
-    [SerializeField] private float aimLerp;
+    [SerializeField] protected float aimLerp;
 
     [Header("Attack")]
-    [SerializeField] private int damage;
+    [SerializeField] protected int damage;
     [SerializeField] Animator animator;
     [SerializeField]private List<Enemy> damagedEnemies = new List<Enemy>();
-    [SerializeField] private float attackDelay;
-    [SerializeField] private float attackTimer;
+    [SerializeField] protected float attackDelay;
+    [SerializeField] protected float attackTimer;
     private void Start()
     {
         state = State.Idle;
@@ -91,7 +91,7 @@ public class Weapon : MonoBehaviour
     {
         attackTimer += Time.deltaTime;
     }
-    private Enemy GetClosestEnemy()
+    protected Enemy GetClosestEnemy()
     {
         Enemy closestEnemy = null;
         Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, range, enemyMask);
@@ -138,6 +138,8 @@ public class Weapon : MonoBehaviour
         Gizmos.color = Color.white;
         Gizmos.DrawWireSphere(transform.position, range);
 
+        if (hitDetectionTransform == null)
+            return;
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(hitDetectionTransform.position, hitDetectionRadius);
     }

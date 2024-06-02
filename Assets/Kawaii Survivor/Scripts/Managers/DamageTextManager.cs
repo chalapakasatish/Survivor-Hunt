@@ -14,7 +14,7 @@ public class DamageTextManager : MonoBehaviour
     [SerializeField]private ObjectPool<DamageText> damageTextPool;
     private void Awake()
     {
-        Enemy.onDamageTaken += EnemyHitCallback;
+        MeeleEnemy.onDamageTaken += EnemyHitCallback;
     }
     private void Start()
     {
@@ -38,7 +38,7 @@ public class DamageTextManager : MonoBehaviour
     }
     private void OnDestroy()
     {
-        Enemy.onDamageTaken -= EnemyHitCallback;
+        MeeleEnemy.onDamageTaken -= EnemyHitCallback;
     }
     private void EnemyHitCallback(int damage,Vector2 enemyPos)
     {
