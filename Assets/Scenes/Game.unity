@@ -349,9 +349,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f56110fe51efbd48a903d3caa169d8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitDetectionTransform: {fileID: 0}
-  hitDetectionRadius: 0
-  hitCollider: {fileID: 0}
   range: 5
   enemyMask:
     serializedVersion: 2
@@ -359,8 +356,7 @@ MonoBehaviour:
   aimLerp: 12
   damage: 10
   animator: {fileID: 134739277}
-  damagedEnemies: []
-  attackDelay: 1
+  attackDelay: 0.15
   attackTimer: 0
   shootingPoint: {fileID: 1864995922}
   bulletPrefab: {fileID: 7055087937841657660, guid: ee59dc9e1fc931143924be959ccce793, type: 3}
@@ -19320,7 +19316,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 840986991}
-  - component: {fileID: 840986992}
+  - component: {fileID: 840986994}
   - component: {fileID: 840986993}
   m_Layer: 0
   m_Name: DeBoink
@@ -19345,31 +19341,6 @@ Transform:
   - {fileID: 2053492649}
   m_Father: {fileID: 929033487}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &840986992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 840986990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1a1d5aa666e3d24fa6554a2c6cad293, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitDetectionTransform: {fileID: 1061024534}
-  hitDetectionRadius: 0.2
-  hitCollider: {fileID: 1061024535}
-  range: 3
-  enemyMask:
-    serializedVersion: 2
-    m_Bits: 64
-  aimLerp: 12
-  damage: 5
-  animator: {fileID: 840986993}
-  damagedEnemies: []
-  attackDelay: 0.5
-  attackTimer: 0
 --- !u!95 &840986993
 Animator:
   serializedVersion: 7
@@ -19392,6 +19363,30 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &840986994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 840986990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 679babf77465d54428def2557b8215af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  range: 3
+  enemyMask:
+    serializedVersion: 2
+    m_Bits: 64
+  aimLerp: 12
+  damage: 5
+  animator: {fileID: 840986993}
+  attackDelay: 1
+  attackTimer: 0
+  hitDetectionTransform: {fileID: 1061024534}
+  hitCollider: {fileID: 1061024535}
+  damagedEnemies: []
 --- !u!1 &929033484
 GameObject:
   m_ObjectHideFlags: 0
