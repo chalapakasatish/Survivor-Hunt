@@ -14,15 +14,7 @@ public abstract class Weapon : MonoBehaviour
     [SerializeField] protected Animator animator;
     [SerializeField] protected float attackDelay;
     [SerializeField] protected float attackTimer;
-    private void Start()
-    {
-        
-    }
 
-    void Update()
-    {
-        
-    }
     protected Enemy GetClosestEnemy()
     {
         Enemy closestEnemy = null;

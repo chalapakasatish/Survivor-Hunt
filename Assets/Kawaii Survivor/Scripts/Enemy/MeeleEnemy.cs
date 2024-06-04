@@ -44,7 +44,6 @@ public class MeeleEnemy : Enemy
         if (distanceToPlayer <= playerDetectionRadius)
         {
             Attack();
-            //PassAway();
         }
     }
     private void Attack()
