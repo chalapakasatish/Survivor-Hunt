@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
-
+[RequireComponent(typeof(Player))]
 public class PlayerDetection : MonoBehaviour
 {
     [Header("Elements")]
-    [SerializeField] private Collider2D daveCollider;
+    [SerializeField] private Collider2D collectableCollider;
 
     //private void FixedUpdate()
     //{
@@ -22,12 +22,12 @@ public class PlayerDetection : MonoBehaviour
     //}
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.TryGetComponent(out Candy candy))
+        if(collider.TryGetComponent(out ICollectable collectable))
         {
-            if (!collider.IsTouching(daveCollider))
+            if (!collider.IsTouching(collectableCollider))
                 return;
 
-            Destroy(candy.gameObject);
+            collectable.Collect(GetComponent<Player>());
         }
     }
 }
