@@ -59,7 +59,9 @@ public class WaveManager : MonoBehaviour
             ui.UpdateTimerText("");
         }
         else
-        StartWave(currentWaveIndex);
+        {
+            StartWave(currentWaveIndex);
+        }
     }
 
     private void DefeatAllEnemies()
@@ -103,17 +105,22 @@ public class WaveManager : MonoBehaviour
         }
         timer += Time.deltaTime;
     }
-
+    Vector2 offSetRadius;
     private Vector2 GetSpawnPosition()
     {
         Vector2 direction = Random.onUnitSphere;
-        Vector2 offSet = direction.normalized *Random.Range(6,10);
+        Vector2 offSet = direction.normalized * Random.Range(6, 10);
         Vector2 targetPosition = (Vector2)player.transform.position + offSet;
 
         targetPosition.x = Mathf.Clamp(targetPosition.x, -18, 18);
         targetPosition.y = Mathf.Clamp(targetPosition.y, -8, 8);
-
+        offSetRadius = offSet;
         return targetPosition;
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(player.transform.position, offSetRadius.magnitude);
     }
 }
 [System.Serializable]
