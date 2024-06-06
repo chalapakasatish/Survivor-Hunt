@@ -49,6 +49,6 @@ public class DamageTextManager : MonoBehaviour
 
         damageTextInstantiate.Animate(damage, isCriticalHit);
 
-        LeanTween.delayedCall(1, () => damageTextPool.Release(damageTextInstantiate));
+        LeanTween.delayedCall(0.5f, () => damageTextPool.Release(damageTextInstantiate));
     }
 }

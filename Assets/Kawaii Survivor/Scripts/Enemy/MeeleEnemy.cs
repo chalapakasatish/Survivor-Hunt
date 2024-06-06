@@ -7,7 +7,6 @@ using System;
 [RequireComponent(typeof(EnemyMovement))]
 public class MeeleEnemy : Enemy
 {
-    
     [Header("Attack")]
     [SerializeField] private int damage;
     [SerializeField] private float attackFrequency;
@@ -18,8 +17,6 @@ public class MeeleEnemy : Enemy
     // Start is called before the first frame update
     protected override void Start()
     {
-        Debug.Log(" MeeleEnemy");
-
         base.Start();
         attackDelay = 1f / attackFrequency;
     }

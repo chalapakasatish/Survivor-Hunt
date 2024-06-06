@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerHealth))]
 public class Player : MonoBehaviour
 {
+    //
+    // Summary:
+    //     Player Class
     [Header("Components")]
     private PlayerHealth playerHealth;
     [SerializeField] private CircleCollider2D collider;

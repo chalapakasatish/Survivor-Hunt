@@ -5,6 +5,9 @@ using UnityEngine;
 
 public abstract class Enemy : MonoBehaviour
 {
+    //
+    // Summary:
+    //     Enemy Class
     [Header("Component")]
     protected EnemyMovement movement;
 
@@ -37,8 +40,6 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void Start()
     {
-        Debug.Log("Enemy");
-
         health = maxHealth;
         movement = GetComponent<EnemyMovement>();
         player = FindFirstObjectByType<Player>();

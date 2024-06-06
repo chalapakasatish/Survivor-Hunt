@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-[RequireComponent(typeof(Rigidbody2D), typeof(CircleCollider2D))]
 
+[RequireComponent(typeof(Rigidbody2D), typeof(CircleCollider2D))]
 public class Bullet : MonoBehaviour
 {
     [Header("Elements")]
@@ -22,18 +22,6 @@ public class Bullet : MonoBehaviour
     {
         rig = GetComponent<Rigidbody2D>();
         collider = GetComponent<CircleCollider2D>();
-        //LeanTween.delayedCall(gameObject, 5, () => rangedEnemyAttack.ReleaseBullet(this));
-    }
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
     public void Shoot(int damage, Vector2 direction,bool isCriticalHit)
     {

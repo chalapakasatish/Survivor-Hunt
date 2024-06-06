@@ -5316,17 +5316,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  healthText: {fileID: 3765099606162462900}
   renderer: {fileID: 5224176233842355245}
   spawnIndicator: {fileID: 6658589184593722685}
   collider: {fileID: 4607388784703767738}
   passAwayParticles: {fileID: 8321801534402384971}
+  playerDetectionRadius: 0.5
+  gizmos: 1
   damage: 1
   attackFrequency: 1
   attackDelay: 0
   attackTimer: 0
-  playerDetectionRadius: 0.5
-  gizmos: 1
 --- !u!114 &4942827889227791693
 MonoBehaviour:
   m_ObjectHideFlags: 0
