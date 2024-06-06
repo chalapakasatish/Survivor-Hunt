@@ -6,7 +6,7 @@ using System;
 using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(WaveManagerUI))]
-public class WaveManager : MonoBehaviour
+public class WaveManager : MonoBehaviour,IGameStateListner
 {
     [Header("Elements")]
     [SerializeField] private Player player;
@@ -60,7 +60,7 @@ public class WaveManager : MonoBehaviour
         }
         else
         {
-            StartWave(currentWaveIndex);
+            GameManager.instance.WaveCompletedCallback();
         }
     }
 
@@ -121,6 +121,11 @@ public class WaveManager : MonoBehaviour
     {
         Gizmos.color = Color.black;
         Gizmos.DrawWireSphere(player.transform.position, offSetRadius.magnitude);
+    }
+
+    public void GameStateChangedCallback(GameState gameState)
+    {
+        Debug.Log($"wave manager{gameState}");
     }
 }
 [System.Serializable]
