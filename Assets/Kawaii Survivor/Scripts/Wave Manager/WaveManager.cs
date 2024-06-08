@@ -25,10 +25,7 @@ public class WaveManager : MonoBehaviour,IGameStateListner
     {
         ui = GetComponent<WaveManagerUI>();
     }
-    private void Start()
-    {
-        StartWave(currentWaveIndex);
-    }
+
     private void Update()
     {
         if (!isTimerOn)
@@ -63,7 +60,10 @@ public class WaveManager : MonoBehaviour,IGameStateListner
             GameManager.instance.WaveCompletedCallback();
         }
     }
-
+    private void StartNextWave()
+    {
+        StartWave(currentWaveIndex);
+    }
     private void DefeatAllEnemies()
     {
         transform.Clear();
@@ -125,7 +125,20 @@ public class WaveManager : MonoBehaviour,IGameStateListner
 
     public void GameStateChangedCallback(GameState gameState)
     {
-        Debug.Log($"wave manager{gameState}");
+        switch (gameState)
+        {
+            case GameState.MENU:
+                break;
+            case GameState.GAME:
+                StartNextWave();
+                break;
+            case GameState.WAVETRANSITION:
+                break;
+            case GameState.SHOP:
+                break;
+            default:
+                break;
+        }
     }
 }
 [System.Serializable]
